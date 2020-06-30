@@ -1,0 +1,14 @@
+/.circleci
+README.md
+LICENSE
+.gitignore
+
+/src
+/node_modules
+/public
+/*.json
+/*.lock
+/*.md
+/*.log
+/.env
+/.env.example
