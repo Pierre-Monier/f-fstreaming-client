@@ -3,7 +3,7 @@ import * as types from '../../redux/actions/actionTypes';
 
 const singleMovie = {
     id: 1,
-    name: "name",
+    name: "movie_name",
     src: "src",
 }
 
