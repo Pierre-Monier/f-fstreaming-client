@@ -8,9 +8,10 @@ import NewSingleMovie from './pages/new-single-movie/NewSingleMovie';
 import NewSingleSerie from './pages/new-single-serie/NewSingleSerie';
 import Login from './pages/login/Login';
 import Please from './pages/please/Please';
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import { PersistGate } from 'redux-persist/integration/react'
+import Loading from './components/loading/Loading';
 import './App.css';
 
 function App() {
@@ -21,38 +22,40 @@ function App() {
   })
 
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <div className="app">
-          <FiltersProvider>
-            <Header/> 
-          </FiltersProvider>
-            <Switch>
-              <Route exact path="/">
-                <Login isChecked={isChecked}/>
-              </Route>
-              <Route exact path="/movies">
-                <NewRoot isChecked={isChecked}/>
-              </Route>
-              <Route exact path="/movies/detail/:id">
-                <NewSingleMovie isChecked={isChecked}/>
-              </Route> 
-              <Route path="/series/detail/:id" component={NewSingleSerie}>
-                <NewSingleSerie  isChecked={isChecked}/>
-              </Route> 
-              <Route path="/series">
-                <NewRootSeries isChecked={isChecked}/>
-              </Route>
-              <Route path="/please">
-                <Please isChecked={isChecked}/>
-              </Route>
-              <Route path="*">
-                <Redirect to="/"/>
-              </Route>
-            </Switch>  
-        </div>
-      </BrowserRouter>
-    </ThemeProvider> 
+    <PersistGate loading={<Loading/>} persistor={persistor}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <div className="app">
+            <FiltersProvider>
+              <Header/> 
+            </FiltersProvider>
+              <Switch>
+                <Route exact path="/">
+                  <Login isChecked={isChecked}/>
+                </Route>
+                <Route exact path="/movies">
+                  <NewRoot isChecked={isChecked}/>
+                </Route>
+                <Route exact path="/movies/detail/:id">
+                  <NewSingleMovie isChecked={isChecked}/>
+                </Route> 
+                <Route path="/series/detail/:id" component={NewSingleSerie}>
+                  <NewSingleSerie  isChecked={isChecked}/>
+                </Route> 
+                <Route path="/series">
+                  <NewRootSeries isChecked={isChecked}/>
+                </Route>
+                <Route path="/please">
+                  <Please isChecked={isChecked}/>
+                </Route>
+                <Route path="*">
+                  <Redirect to="/"/>
+                </Route>
+              </Switch>  
+          </div>
+        </BrowserRouter>
+      </ThemeProvider> 
+    </PersistGate>
   );
 }
 

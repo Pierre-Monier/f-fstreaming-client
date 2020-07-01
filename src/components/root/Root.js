@@ -3,8 +3,9 @@ import { useMovies } from '../../services/movies/Movies';
 import Thumb from '../thumb/Thumb';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../loading/Loading';
-
-const Root = () => {
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
+const Root = ({scrollPosition}) => {
     
     const movies = useMovies();
     const [loading, setLoading] = useState(true);
@@ -26,19 +27,20 @@ const Root = () => {
 // °°°°°°°°°°°°°°°°°°°°°
     const createThumbs = data => {
         const thumbs = Object.keys(data).map( item => 
-            
-            <Thumb key={data[item].id} data={data[item]} movie={true}/>
-            
+        <LazyLoadComponent key={data[item].id} scrollPosition={scrollPosition}>
+            <Thumb  data={data[item]} movie={true}/>
+        </LazyLoadComponent> 
         );
+
         return thumbs;   
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
     return (
-        <Grid container className="mt-container">
-           { loading ? <Loading big={true}/> : thumbs }
-        </Grid>
+            <Grid container className="mt-container">
+            { loading ? <Loading big={true}/> : thumbs }
+            </Grid>
   );
 }
 
-export default Root;
+export default trackWindowScroll(Root);

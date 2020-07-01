@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import Loading from '../../components/loading/Loading';
 
 const MailForm = props => {
     const [variable, setVariable] = useState( { name: '', email: '' } );
@@ -45,7 +46,7 @@ const MailForm = props => {
             : null }
             <Grid item xs={12} className="flex-center">
                 <Button variant="contained" color="primary" onClick={(e) => handleSubmit(e)}>
-                    {sending ? props.data.onsend : props.data.send}
+                    {sending ? <Loading/> : props.data.send}
                 </Button>
             </Grid>
         </Grid>

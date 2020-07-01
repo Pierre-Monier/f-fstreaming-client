@@ -75,30 +75,30 @@ export default function Header() {
                 <Toolbar>
                     <Grid container spacing={2} alignItems="center">
                         <Logo filterActive={filterActive} loading={loading}/>
-                        { loading ? <Loading big={false}/> : !filterActive ? null :
-                        <Fragment>            
-                            <Grid item xs={6} sm={7}lg={2} className="flex-end">
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
-                                        <SearchIcon/>
-                                    </div>
-                                    <div>
-                                        <InputBase
-                                        placeholder="Search..."
-                                        type="text"
-                                        value={values.input}
-                                        onChange={(e) => handleChange(filterChoiceRef.current, e, 'input')}
-                                        endAdornment={<EndAdornment click={() => handleClick()} value={values}/>}
-                                        autoFocus={true}
-                                        size="large"
-                                        />
-                                    </div>
-                                </div>
-                            </Grid> 
-                            <Grid item xs={6} sm={3}lg={1} className={matches ? `flex-center` : `flex-start`}>
-                                <FiltreChoice  cb={cbChoice}/>
-                            </Grid>
-                        </Fragment>      
+                        { loading ? <Loading big={false}/> : !filterActive ? null : null
+                        // <Fragment>            
+                        //     <Grid item xs={6} sm={7}lg={2} className="flex-end">
+                        //         <div className={classes.search}>
+                        //             <div className={classes.searchIcon}>
+                        //                 <SearchIcon/>
+                        //             </div>
+                        //             <div>
+                        //                 <InputBase
+                        //                 placeholder="Search..."
+                        //                 type="text"
+                        //                 value={values.input}
+                        //                 onChange={(e) => handleChange(filterChoiceRef.current, e, 'input')}
+                        //                 endAdornment={<EndAdornment click={() => handleClick()} value={values}/>}
+                        //                 autoFocus={true}
+                        //                 size="large"
+                        //                 />
+                        //             </div>
+                        //         </div>
+                        //     </Grid> 
+                        //     <Grid item xs={6} sm={3}lg={1} className={matches ? `flex-center` : `flex-start`}>
+                        //         <FiltreChoice  cb={cbChoice}/>
+                        //     </Grid>
+                        // </Fragment>      
                         }
                     </Grid>
                 </Toolbar>

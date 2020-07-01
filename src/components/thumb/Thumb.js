@@ -22,7 +22,8 @@ const Thumb = props => {
                     <CardActionArea>
                         <Link to={props.movie ? `/movies/detail/${props.data.id}` : `/series/detail/${props.data.id}`} className={classes.link} onClick={() => store.dispatch({ type: 'ADDSINGLE', data: props.data})}>
                             <CardMedia
-                            image={props.movie ? process.env.REACT_APP_IMAGE_DIR+props.data.image_name : process.env.REACT_APP_IMAGE_DIR_SERIE+props.data.image_name}
+                            className={classes.bg}
+                            image={props.movie ? props.data.image_name : process.env.REACT_APP_IMAGE_DIR_SERIE+props.data.image_name}
                             src='img'
                             title={props.data.name}
                             />
@@ -104,6 +105,9 @@ const useStyles = makeStyles(() => ({
         '& *': {
             textDecoration: 'none'
         }
+    },
+    bg:{
+        backgroundColor: "#eee"
     }
   }));
 

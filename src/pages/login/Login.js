@@ -3,12 +3,14 @@ import { TextField, Grid, Button, Card, CardContent } from '@material-ui/core';
 import { useHistory, Link } from 'react-router-dom';
 import { store } from '../../redux/store';
 import { checkUser } from '../../utils/req';
+import Loading from '../../components/loading/Loading';
 
 const Login = ({msg, isChecked}) => {
     const history = useHistory()
     const [username, setUsername] = useState('');
     const [pw, setPw] = useState('');
     const [isFailed, setisFailed] = useState(false)
+    const [sending, setSending] = useState(false);
     useEffect(() => {
         if(isChecked){
             history.push("/movies")
@@ -26,6 +28,7 @@ const Login = ({msg, isChecked}) => {
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     const handleClick = () => {
+        setSending(true)
         checkUser({username: username, pw: pw}, callback)
     }
 // °°°°°°°°°°°°°°°°°°°°°
@@ -37,6 +40,7 @@ const Login = ({msg, isChecked}) => {
         },
         error: () => {
             setisFailed(true)
+            setSending(false)
         }
     }
 // °°°°°°°°°°°°°°°°°°°°°
@@ -58,7 +62,9 @@ const Login = ({msg, isChecked}) => {
                                 <TextField label="password" type="password" onChange={(e) => handleChange('pw', e)} className="flex-center"/>
                             </Grid>
                             <Grid item xs={12} className="flex-center">
-                                <Button onClick={() => handleClick()} color="primary" variant="contained">Connect</Button>
+                                <Button onClick={() => handleClick()} color="primary" variant="contained">
+                                    { sending ? <Loading/> : 'Connect' }
+                                </Button>
                             </Grid>
                             <Grid item xs={12}  className="flex-center">
                                 { isFailed ? 'Something went wrong' : '' }

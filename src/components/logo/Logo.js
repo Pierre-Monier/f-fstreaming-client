@@ -26,10 +26,10 @@ const Logo = props => {
                             <img src={isHomed ? '/logo.gif' : '/logo2.gif'} alt="logo" className="logo"/>
                         </Link>
                     </Grid>
-                    {props.loading ? null : !props.filterActive ? null : 
-                    <Grid item xs={4} sm={1} lg={4}>
-                        <SwitchLink/>
-                    </Grid>
+                    {props.loading ? null : !props.filterActive ? null : null
+                    // <Grid item xs={4} sm={1} lg={4}>
+                    //     <SwitchLink/>
+                    // </Grid>
                     }
                 </Grid>
             </Grid> 
