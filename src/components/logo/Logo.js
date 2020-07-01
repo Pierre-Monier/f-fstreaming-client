@@ -2,6 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link,  useLocation } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import SwitchLink from '../switch-link/SwitchLink'
+
+/*
+
+
+WARNING, SOME LOGIC HAS BEEN REMOVE TEMPORARY FOR PRODUCTION PURPOSE
+
+*/
+
 const Logo = props => {
     const selfRef = useRef()
     const {pathname} = useLocation() 

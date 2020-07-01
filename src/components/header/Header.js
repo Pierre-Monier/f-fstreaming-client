@@ -15,6 +15,13 @@ import EndAdornment from '../end-adornment/EndAdornment';
 import Logo from '../logo/Logo';
 import { useHistory } from 'react-router-dom';
 
+/*
+
+
+WARNING, SOME LOGIC HAS BEEN REMOVE TEMPORARY FOR PRODUCTION PURPOSE
+
+*/
+
 export default function Header() {
     const history = useHistory()
     const [loading, setLoading] = useState(true);
