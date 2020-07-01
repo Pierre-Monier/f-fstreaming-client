@@ -20,6 +20,7 @@ import { useHistory } from 'react-router-dom';
 
 WARNING, SOME LOGIC HAS BEEN REMOVE TEMPORARY FOR PRODUCTION PURPOSE
 
+
 */
 
 export default function Header() {
