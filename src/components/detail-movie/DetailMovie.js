@@ -9,6 +9,7 @@ import { store } from '../../redux/store';
 
 
 const DetailMovie = props => {
+    
     const videoRef = useRef()
     const sourceRef = useRef()
     const [videosrc, setVideosrc] = useState(props.src.videos[0].path);
