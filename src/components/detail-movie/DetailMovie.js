@@ -11,10 +11,11 @@ import { store } from '../../redux/store';
 const DetailMovie = props => {
     const videoRef = useRef()
     const sourceRef = useRef()
-    const [videosrc, setVideosrc] = useState(process.env.REACT_APP_VIDEO_DIR+props.src.videos[0].video_name);
+    const [videosrc, setVideosrc] = useState(props.src.videos[0].path);
     const [loaded, setLoaded] = useState(false);
     const loadedRef = useRef(loaded)
     useEffect(() => {
+        console.log(props, videosrc)
         store.dispatch({ type: 'ADDSRC', data: props.src})
         videoRef.current.addEventListener("loadedmetadata", () => {
             if(!loadedRef.current){
@@ -113,7 +114,7 @@ const DetailMovie = props => {
                                         <MovieChoice videos={props.src.videos} videoChange={handleSrcChange}/>
                                     </Grid>
                                     <Grid item lg={12}>
-                                        <video className="video hidden-video" controls preload="auto" ref={videoRef} style={{display: 'none'}}>
+                                        <video className="video hidden-video" controls preload="auto" ref={videoRef}>
                                             <source src={videosrc} type="video/mp4" ref={sourceRef}/>
                                         </video> 
                                     </Grid>
