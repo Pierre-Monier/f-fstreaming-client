@@ -116,7 +116,7 @@ const DetailMovie = props => {
                                     </Grid>
                                     <Grid item lg={12}>
                                         <video className="video hidden-video" controls preload="auto" ref={videoRef}>
-                                            <source src={videosrc} type="video/mp4" ref={sourceRef}/>
+                                            <source src={videosrc} ref={sourceRef}/>
                                         </video> 
                                     </Grid>
                                 </Grid>
