@@ -4,7 +4,7 @@ import Thumb from '../thumb/Thumb';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../loading/Loading';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
-import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
+import { trackWindowScroll } from 'react-lazy-load-image-component';
 const Root = ({scrollPosition}) => {
     
     const movies = useMovies();
