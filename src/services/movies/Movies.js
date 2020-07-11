@@ -1,7 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { fetchData, signal } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
-import { store } from '../../redux/store';
 
 
 export const moviesContext = createContext({
@@ -32,13 +31,9 @@ const useData = multiple =>{
     const {id} = useParams() 
     useEffect(() => {
         if(id && !multiple){
-            // if(!store.getState().src){
-                fetchData(`${process.env.REACT_APP_API_MOVIE}/${id}`, { signal: signal.signal }).then(res => {
-                    setMovies({...res}); 
-                })
-            // }else{
-                // setMovies({...store.getState().src})
-            // }
+            fetchData(`${process.env.REACT_APP_API_MOVIE}/${id}`, { signal: signal.signal }).then(res => {
+                setMovies({...res}); 
+            })
         }else if(multiple){
             fetchData(process.env.REACT_APP_API_MOVIE, { signal: signal.signal }).then(res => {
                 setMovies({...res}); 

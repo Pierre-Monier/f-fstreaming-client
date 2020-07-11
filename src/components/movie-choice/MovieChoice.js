@@ -18,6 +18,7 @@ const MovieChoice = props => {
         setAnchorEl(null);
         // send data to parent component
         if(isChoiced){
+            console.log(props.videos, choice)
             props.videoChange(choice)
             setCosmetique(newcos)
         }
@@ -45,7 +46,7 @@ const MovieChoice = props => {
             onClose={() => handleClose(false)}
             >
             {props.videos.map((video) => (
-                <MenuItem key={video.id} value={video.name} onClick={() => handleClose(true, video.video_name, video.name)}>
+                <MenuItem key={video.id} value={video.name} onClick={() => handleClose(true, video.path, video.name)}>
                 {video.name}
                 </MenuItem>
             ))}

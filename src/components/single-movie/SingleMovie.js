@@ -3,10 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import DetailMovie from '../detail-movie/DetailMovie';
 import { store } from '../../redux/store';
 import Loading from '../loading/Loading';
-import RedirectAll from "../redirect-all/RedirectAll";
 import { useOneMovie } from '../../services/movies/Movies';
 
-const SingleMovie = props => {
+const SingleMovie = () => {
   const onemovie = useOneMovie();
   const [loading, setLoading] = useState(true);
   const [detailMovie, setDetailMovie] = useState(null);
@@ -17,14 +16,15 @@ const SingleMovie = props => {
 
     if(store.getState().id !== null && onemovie){
       setLoading(false)
-      setDetailMovie(createDetailMovie(store.getState().general, store.getState().src ? store.getState().src : onemovie))
-    }else{
-      setTimeout(() => {
-        if(store.getState().id === null){
-          setDetailMovie(createRedirectAll("/movies"))
-        }     
-      },1000);  
+      setDetailMovie(createDetailMovie(store.getState().general, store.getState().src ? /*store.getState().src*/ onemovie : onemovie))
     }
+    // else{
+    //   setTimeout(() => {
+    //     if(store.getState().id === null){
+    //       setDetailMovie(createRedirectAll("/movies"))
+    //     }     
+    //   },1000);  
+    // }
   }, [loading, onemovie]);
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // Create News
@@ -32,12 +32,6 @@ const SingleMovie = props => {
 const createDetailMovie = (general, src) => {
   const detailmovie = <DetailMovie key={general.id} general={general} src={src}/>;
   return detailmovie;   
-}
-// °°°°°°°°°°°°°°°°°°°°°
-// °°°°°°°°°°°°°°°°°°°°°
-const createRedirectAll = url => {
-  setLoading(false)
-  return <RedirectAll url={url}/>;   
 }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°

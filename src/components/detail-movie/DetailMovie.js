@@ -33,10 +33,9 @@ const DetailMovie = props => {
                     }
                 })
                 setLoaded(true)
-                videoRef.current.classList.remove('hidden-video')
             }
          });
-    }, [props.src]);
+    }, [props, videosrc]);
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     useEffect(() => {
@@ -45,6 +44,7 @@ const DetailMovie = props => {
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     const handleSrcChange = newsrc => {
+        console.log("IN", newsrc);
         videoRef.current.pause()
         setVideosrc(newsrc)
         sourceRef.current.setAttribute('src', newsrc)
@@ -115,8 +115,8 @@ const DetailMovie = props => {
                                         <MovieChoice videos={props.src.videos} videoChange={handleSrcChange}/>
                                     </Grid>
                                     <Grid item lg={12}>
-                                        <video className="video hidden-video" controls preload="auto" ref={videoRef}>
-                                            <source src={videosrc} ref={sourceRef}/>
+                                        <video className="video"  controls preload="auto" ref={videoRef}>
+                                            <source src={videosrc} ref={sourceRef} type="video/mp4"/>
                                         </video> 
                                     </Grid>
                                 </Grid>

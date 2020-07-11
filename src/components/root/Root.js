@@ -18,22 +18,22 @@ const Root = ({scrollPosition}) => {
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     useEffect(() => {
+        const createThumbs = data => {
+            const thumbs = Object.keys(data).map( item => 
+            <LazyLoadComponent key={data[item].id} scrollPosition={scrollPosition}>
+                <Thumb  data={data[item]} movie={true}/>
+            </LazyLoadComponent> 
+            );
+
+            return thumbs;   
+        }
         if(movies){
             setLoading(false)
             setThumbs(createThumbs(movies))
         }
-    }, [movies]);
+    }, [movies, scrollPosition]);
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
-    const createThumbs = data => {
-        const thumbs = Object.keys(data).map( item => 
-        <LazyLoadComponent key={data[item].id} scrollPosition={scrollPosition}>
-            <Thumb  data={data[item]} movie={true}/>
-        </LazyLoadComponent> 
-        );
-
-        return thumbs;   
-    }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
     return (
