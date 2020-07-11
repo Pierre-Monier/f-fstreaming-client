@@ -16,7 +16,7 @@ const SingleMovie = () => {
 
     if(store.getState().id !== null && onemovie){
       setLoading(false)
-      setDetailMovie(createDetailMovie(store.getState().general, store.getState().src ? /*store.getState().src*/ onemovie : onemovie))
+      setDetailMovie(createDetailMovie(store.getState().general, onemovie))
     }
     // else{
     //   setTimeout(() => {
