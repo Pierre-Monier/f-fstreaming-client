@@ -18,7 +18,6 @@ const MovieChoice = props => {
         setAnchorEl(null);
         // send data to parent component
         if(isChoiced){
-            console.log(props.videos, choice)
             props.videoChange(choice)
             setCosmetique(newcos)
         }

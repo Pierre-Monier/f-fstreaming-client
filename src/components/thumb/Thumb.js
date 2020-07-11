@@ -16,7 +16,7 @@ const Thumb = props => {
 //  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     return (
-        <Grid item xs={12} lg={3}className={`p-cardmovie ${props.movie ? process.env.REACT_APP_MOVIES_CLASS: process.env.REACT_APP_SERIES_CLASS}`} data-title={props.data.name} data-tags={props.data.tags} data-acteurs={props.movie ? props.data.acteurs : props.data.Chaine} data-realisateur={props.movie ? props.data.realisateur : props.data.Realisateur}>
+        <Grid item xs={12} sm={6} lg={3}className={`p-cardmovie ${props.movie ? process.env.REACT_APP_MOVIES_CLASS: process.env.REACT_APP_SERIES_CLASS}`} data-title={props.data.name} data-tags={props.data.tags} data-acteurs={props.movie ? props.data.acteurs : props.data.Chaine} data-realisateur={props.movie ? props.data.realisateur : props.data.Realisateur}>
             <Fade bottom cascade>
                 <Card>
                     <CardActionArea>

@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import { CardContent, useMediaQuery, Grid, Card, Typography, useTheme } from '@material-ui/core';
 import Fade from 'react-reveal/Fade';
 import MovieChoice from '../movie-choice/MovieChoice';
 import { store } from '../../redux/store';
@@ -15,8 +12,9 @@ const DetailMovie = props => {
     const [videosrc, setVideosrc] = useState(props.src.videos[0].path);
     const [loaded, setLoaded] = useState(false);
     const loadedRef = useRef(loaded)
+    const theme = useTheme();
+    const isLarge = useMediaQuery(theme.breakpoints.up('lg'));
     useEffect(() => {
-        console.log(props, videosrc)
         store.dispatch({ type: 'ADDSRC', data: props.src})
         videoRef.current.addEventListener("loadedmetadata", () => {
             if(!loadedRef.current){
@@ -44,12 +42,10 @@ const DetailMovie = props => {
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     const handleSrcChange = newsrc => {
-        console.log("IN", newsrc);
         videoRef.current.pause()
         setVideosrc(newsrc)
         sourceRef.current.setAttribute('src', newsrc)
         videoRef.current.load()
-        videoRef.current.play()
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
@@ -64,54 +60,58 @@ const DetailMovie = props => {
                                     {props.general.name}
                                 </Typography>
                             </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center detail-info">
-                                <Typography variant="overline" color="textSecondary" component="p">
-                                    ACTEURS
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={2} xs={12}className="flex-center">
-                                <Typography variant="h6" component="p" className="text-center">
-                                    {props.general.acteurs}
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center detail-info">
-                                <Typography variant="overline" color="textSecondary" component="p">
-                                    REALISATEURS
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={2} xs={12}className="flex-center">
-                                <Typography variant="h6" component="p" className="text-center">
-                                    {props.general.realisateur}
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center detail-info">
-                                <Typography variant="overline" color="textSecondary" component="p">
-                                    TAGS
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center">
-                                <Typography variant="h6" component="p">
-                                    {props.general.tags}
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center detail-info">
-                                <Typography variant="overline" color="textSecondary" component="p">
-                                    RUNNING TIME
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={1} xs={12}className="flex-center">
-                                <Typography variant="h6" component="p">
-                                    {props.general.duree}
-                                </Typography>
-                            </Grid>
-                            <Grid item lg={3} xs={12}className="flex-center pt-single">
-                                <Typography variant="body1" color="textPrimary" component="p">
-                                    {props.general.resume}
-                                </Typography>
-                            </Grid>
+                            { isLarge ?
+                            <>
+                                <Grid item lg={1} xs={12}className="flex-center detail-info">
+                                    <Typography variant="overline" color="textSecondary" component="p">
+                                        ACTEURS
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={2} xs={12}className="flex-center">
+                                    <Typography variant="h6" component="p" className="text-center">
+                                        {props.general.acteurs}
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={1} xs={12}className="flex-center detail-info">
+                                    <Typography variant="overline" color="textSecondary" component="p">
+                                        REALISATEURS
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={2} xs={12}className="flex-center">
+                                    <Typography variant="h6" component="p" className="text-center">
+                                        {props.general.realisateur}
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={1} xs={12}className="flex-center detail-info">
+                                    <Typography variant="overline" color="textSecondary" component="p">
+                                        TAGS
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={1} xs={12}className="flex-center">
+                                    <Typography variant="h6" component="p">
+                                        {props.general.tags}
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={1} xs={12}className="flex-center detail-info">
+                                    <Typography variant="overline" color="textSecondary" component="p">
+                                        RUNNING TIME
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={1} xs={12}className="flex-center">
+                                    <Typography variant="h6" component="p">
+                                        {props.general.duree}
+                                    </Typography>
+                                </Grid>
+                                <Grid item lg={3} xs={12}className="flex-center pt-single">
+                                    <Typography variant="body1" color="textPrimary" component="p">
+                                        {props.general.resume}
+                                    </Typography>
+                                </Grid>
+                            </>
+                            : null }
                             <Grid item lg={9} xs={12}className="flex-center">
                                 <Grid container spacing={1}>
-                                    <Grid item lg={12} className="flex-center">
+                                    <Grid item xs={12} className="flex-center">
                                         <MovieChoice videos={props.src.videos} videoChange={handleSrcChange}/>
                                     </Grid>
                                     <Grid item lg={12}>

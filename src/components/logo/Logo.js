@@ -31,7 +31,7 @@ const Logo = props => {
                 <Grid container alignItems="center">
                     <Grid item xs={8} sm={11} lg={8}>
                         <Link to={isHomed ? "/movies" : "/series"}>
-                            <img src={isHomed ? '/logo.gif' : '/logo2.gif'} alt="logo" className="logo"/>
+                            <img src={isHomed ? '/logo.png' : '/logo2.gif'} alt="logo" className="logo"/>
                         </Link>
                     </Grid>
                     {props.loading ? null : !props.filterActive ? null : null
