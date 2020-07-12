@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useMovies } from '../../services/movies/Movies';
 import Thumb from '../thumb/Thumb';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +12,7 @@ const Root = ({scrollPosition}) => {
     let movies = useMovies();
     const [loading, setLoading] = useState(true);
     const [thumbs, setThumbs] = useState(null);
+    const thumbsRef = useRef(thumbs);
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
@@ -26,18 +27,22 @@ const Root = ({scrollPosition}) => {
             return thumbs;   
         }
         if(movies){
-            console.log(movies)
             setLoading(false)
             setThumbs(createThumbs(movies))
-            filterStore.subscribe(() => {
-                setThumbs(createThumbs(Object.values(movies).filter(el => el.name.toLowerCase().includes(filterStore.getState().search.toLowerCase())
-                || el.acteurs.toLowerCase().includes(filterStore.getState().search.toLowerCase())
-                || el.realisateur.toLowerCase().includes(filterStore.getState().search.toLowerCase())
-                || el.tags.toLowerCase().includes(filterStore.getState().search.toLowerCase())
-                )))
+           filterStore.subscribe(() => {
+                setThumbs(thumbsRef.current.filter(el => el.props.children.props.data.name.toLowerCase().includes(filterStore.getState().search.toLowerCase())
+                    || el.props.children.props.data.acteurs.toLowerCase().includes(filterStore.getState().search.toLowerCase())
+                    || el.props.children.props.data.realisateur.toLowerCase().includes(filterStore.getState().search.toLowerCase())
+                    || el.props.children.props.data.tags.toLowerCase().includes(filterStore.getState().search.toLowerCase())
+                ))
             })
         }
     }, [movies, scrollPosition]);
+    useEffect(() => {
+        if(!thumbsRef.current){
+            thumbsRef.current = thumbs
+        }
+    }, [thumbs]);
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   
     return (
