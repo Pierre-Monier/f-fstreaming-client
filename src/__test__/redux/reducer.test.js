@@ -1,5 +1,5 @@
-import { detail, defaultState } from '../../redux/store'
-import * as types from '../../redux/actions/actionTypes';
+import { detail, defaultState } from '../../redux/general/store'
+import * as types from '../../redux/general/actions/actionTypes';
 
 const singleMovie = {
     id: 1,

@@ -8,7 +8,7 @@ import NewSingleMovie from './pages/new-single-movie/NewSingleMovie';
 import NewSingleSerie from './pages/new-single-serie/NewSingleSerie';
 import Login from './pages/login/Login';
 import Please from './pages/please/Please';
-import { store, persistor } from './redux/store';
+import { store, persistor } from './redux/general/store';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { PersistGate } from 'redux-persist/integration/react'
 import Loading from './components/loading/Loading';

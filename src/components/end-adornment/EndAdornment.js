@@ -4,18 +4,18 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import ClearIcon from "@material-ui/icons/Clear";
 
 
-const EndAdornment = props => {
+const EndAdornment = ({value, click}) => {
 
     const handleMouseDown = event => {
         event.preventDefault();
     };
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-    if (props.value.input) {
+    if(value){ 
         return (
           <InputAdornment position="end">
             <IconButton
-              onClick={props.click}
+              onClick={click}
               onMouseDown={handleMouseDown}
               color="inherit"
             >
@@ -24,7 +24,6 @@ const EndAdornment = props => {
           </InputAdornment>
         );
       }
-
       return "";
     };
 

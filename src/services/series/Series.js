@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { fetchData, signal } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 export const seriesContext = createContext({

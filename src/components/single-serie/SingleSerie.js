@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DetailSerie from '../detail-serie/DetailSerie';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 import Loading from '../loading/Loading';
 import RedirectAll from "../redirect-all/RedirectAll";
 import { useOneSerie } from '../../services/series/Series';

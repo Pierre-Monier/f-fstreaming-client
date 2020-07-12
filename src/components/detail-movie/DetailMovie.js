@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CardContent, useMediaQuery, Grid, Card, Typography, useTheme } from '@material-ui/core';
 import Fade from 'react-reveal/Fade';
 import MovieChoice from '../movie-choice/MovieChoice';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 import Player from '../player/Player';
 
 const DetailMovie = props => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Grid, Button, Card, CardContent } from '@material-ui/core';
 import { useHistory, Link } from 'react-router-dom';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 import { checkUser } from '../../utils/req';
 import Loading from '../../components/loading/Loading';
 

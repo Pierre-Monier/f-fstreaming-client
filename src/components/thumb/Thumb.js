@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 import Fade from 'react-reveal/Fade';
 
 const Thumb = props => {

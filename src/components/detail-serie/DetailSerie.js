@@ -7,7 +7,7 @@ import Fade from 'react-reveal/Fade';
 import SaisonEpisodeChoice from '../saison-episode-choice/SaisonEpisodeChoice';
 import Shuffle from '../shuffle/Shuffle';
 import OneStep from '../one-step/OneStep';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 
 
 const DetailSerie = props => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DetailMovie from '../detail-movie/DetailMovie';
-import { store } from '../../redux/store';
+import { store } from '../../redux/general/store';
 import Loading from '../loading/Loading';
 import { useOneMovie } from '../../services/movies/Movies';
 
