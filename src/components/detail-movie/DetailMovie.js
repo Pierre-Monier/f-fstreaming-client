@@ -3,49 +3,20 @@ import { CardContent, useMediaQuery, Grid, Card, Typography, useTheme } from '@m
 import Fade from 'react-reveal/Fade';
 import MovieChoice from '../movie-choice/MovieChoice';
 import { store } from '../../redux/store';
-
+import Player from '../player/Player';
 
 const DetailMovie = props => {
     
-    const videoRef = useRef()
-    const sourceRef = useRef()
     const [videosrc, setVideosrc] = useState(props.src.videos[0].path);
-    const [loaded, setLoaded] = useState(false);
-    const loadedRef = useRef(loaded)
     const theme = useTheme();
     const isLarge = useMediaQuery(theme.breakpoints.up('lg'));
     useEffect(() => {
         store.dispatch({ type: 'ADDSRC', data: props.src})
-        videoRef.current.addEventListener("loadedmetadata", () => {
-            if(!loadedRef.current){
-                props.src.subtitles.forEach((el) => {
-                    if(el && el !== undefined && videoRef.current){
-                        let track = document.createElement("track");
-                        track.label = el.langue;
-                        track.src = process.env.REACT_APP_SUBTITLE_DIR+el.subtitle_name;
-                        track.addEventListener("load", () => {
-                            track.mode = "showing";
-                            videoRef.current.textTracks[0].mode = "showing";
-                        });
-                        videoRef.current.appendChild(track)
-                    }
-                })
-                setLoaded(true)
-            }
-         });
     }, [props, videosrc]);
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
-    useEffect(() => {
-        loadedRef.current  = loaded
-    }, [loaded]);
-// °°°°°°°°°°°°°°°°°°°°°
-// °°°°°°°°°°°°°°°°°°°°°
     const handleSrcChange = newsrc => {
-        videoRef.current.pause()
         setVideosrc(newsrc)
-        sourceRef.current.setAttribute('src', newsrc)
-        videoRef.current.load()
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
@@ -114,10 +85,8 @@ const DetailMovie = props => {
                                     <Grid item xs={12} className="flex-center">
                                         <MovieChoice videos={props.src.videos} videoChange={handleSrcChange}/>
                                     </Grid>
-                                    <Grid item lg={12}>
-                                        <video className="video"  controls preload="auto" ref={videoRef}>
-                                            <source src={videosrc} ref={sourceRef} type="video/mp4"/>
-                                        </video> 
+                                    <Grid item xs={12}>
+                                        <Player subtitles={props.src.subtitles} src={videosrc}/>
                                     </Grid>
                                 </Grid>
 
