@@ -2,6 +2,13 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 const Player = ({subtitles, src}) => {
+
+    // useEffect(() => {
+        
+    //     return () => {
+    //         console.log('cleanup')
+    //     };
+    // }, [input]);
     return (
     <div className='video'>
         <ReactPlayer
@@ -12,7 +19,8 @@ const Player = ({subtitles, src}) => {
             height='100%'
             config={{ file: {
             attributes: {
-                crossOrigin: 'true'
+                crossOrigin: 'true',
+                id: 'player'
             },
             tracks: subtitles.map(el => {
                 return {kind: 'subtitles', src: el.subtitle_name, label: el.langue, srcLang: el.code} 
