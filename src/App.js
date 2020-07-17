@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/header/Header';
-import { FiltersProvider } from './services/filter/Filter';
 import NewRoot from './pages/new-root/NewRoot';
-import NewRootSeries from './pages/new-root-series/NewRootSeries';
 import NewSingleMovie from './pages/new-single-movie/NewSingleMovie';
-import NewSingleSerie from './pages/new-single-serie/NewSingleSerie';
 import Login from './pages/login/Login';
 import Please from './pages/please/Please';
 import { store, persistor } from './redux/general/store';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { PersistGate } from 'redux-persist/integration/react'
 import Loading from './components/loading/Loading';
+import ScroolTop from './components/scrool-top/ScroolTop';
 import './App.css';
 
 function App() {
@@ -24,36 +22,29 @@ function App() {
   return (
     <PersistGate loading={<Loading/>} persistor={persistor}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <div className="app">
-            <FiltersProvider>
+          <BrowserRouter>
+            <div className="app">
               <Header/> 
-            </FiltersProvider>
-              <Switch>
-                <Route exact path="/">
-                  <Login isChecked={isChecked}/>
-                </Route>
-                <Route exact path="/movies">
-                  <NewRoot isChecked={isChecked}/>
-                </Route>
-                <Route exact path="/movies/detail/:id">
-                  <NewSingleMovie isChecked={isChecked}/>
-                </Route> 
-                <Route path="/series/detail/:id" component={NewSingleSerie}>
-                  <NewSingleSerie  isChecked={isChecked}/>
-                </Route> 
-                <Route path="/series">
-                  <NewRootSeries isChecked={isChecked}/>
-                </Route>
-                <Route path="/please">
-                  <Please isChecked={isChecked}/>
-                </Route>
-                <Route path="*">
-                  <Redirect to="/"/>
-                </Route>
-              </Switch>  
-          </div>
-        </BrowserRouter>
+                <Switch>
+                  <Route exact path="/">
+                    <Login isChecked={isChecked}/>
+                  </Route>
+                  <Route exact path="/movies">
+                    <NewRoot isChecked={isChecked}/>
+                  </Route>
+                  <Route exact path="/movies/detail/:id">
+                    <NewSingleMovie isChecked={isChecked}/>
+                  </Route> 
+                  <Route path="/please">
+                    <Please isChecked={isChecked}/>
+                  </Route>
+                  <Route path="*">
+                    <Redirect to="/"/>
+                  </Route>
+                </Switch>  
+              <ScroolTop/>
+            </div>
+          </BrowserRouter>
       </ThemeProvider> 
     </PersistGate>
   );

@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, fade } from '@material-ui/core/styles';
+import { makeStyles, fade, AppBar, Toolbar, InputBase, Grid, Slide, useScrollTrigger } from '@material-ui/core/';
 import './Header.css';
 import EndAdornment from '../end-adornment/EndAdornment';
 import Logo from '../logo/Logo';
 import { useHistory } from 'react-router-dom';
 import { filterStore } from '../../redux/filter-store/filter-store';
-/*
-
-
-WARNING, SOME LOGIC HAS BEEN REMOVE TEMPORARY FOR PRODUCTION PURPOSE
-
-
-*/
 
 export default function Header() {
+
     const history = useHistory()
     const [value, setValue] = useState('');    
     const classes = useStyles();
+    // const { window } = props;
+    const trigger = useScrollTrigger();
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
     const handleChange = (e) => {
         setValue(e.target.value)
         filterStore.dispatch({ type: 'CHANGESEARCH', data: e.target.value })
+        if(e.target.value.length === 1){
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto'
+            })
+        }
     }
 // °°°°°°°°°°°°°°°°°°°°°
 // °°°°°°°°°°°°°°°°°°°°°
@@ -39,32 +37,34 @@ export default function Header() {
 // Crée un composant LOGO qui permet de choisir entre FILM et SERIE, rester appyer dessus permet de changer de composant PAGE (ROOT/ROOTSERIES)
     if(history.location.pathname !== "/" && history.location.pathname !== "/please"){
         return (
-            <AppBar position="fixed">
-                <Toolbar>
-                    <Grid container spacing={2} alignItems="center">
-                        <Logo/> 
-                            <Grid item xs={10}className="flex-end">
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
-                                        <SearchIcon/>
+            <Slide appear={false} direction="down" in={!trigger}>
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <Grid container spacing={2} alignItems="center">
+                            <Logo/> 
+                                <Grid item xs={10}className="flex-end">
+                                    <div className={classes.search}>
+                                        <div className={classes.searchIcon}>
+                                            <SearchIcon/>
+                                        </div>
+                                        <div>
+                                            <InputBase
+                                            placeholder="Filtrer..."
+                                            type="text"
+                                            value={value}
+                                            onChange={(e) => handleChange(e)}
+                                            endAdornment={<EndAdornment click={() => handleClick()} value={value}/>}
+                                            autoFocus={true}
+                                            size="large"
+                                            className={classes.input}
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <InputBase
-                                        placeholder="Search..."
-                                        type="text"
-                                        value={value}
-                                        onChange={(e) => handleChange(e)}
-                                        endAdornment={<EndAdornment click={() => handleClick()} value={value}/>}
-                                        autoFocus={true}
-                                        size="large"
-                                        className={classes.input}
-                                        />
-                                    </div>
-                                </div>
-                            </Grid> 
-                    </Grid>
-                </Toolbar>
-            </AppBar>
+                                </Grid> 
+                        </Grid>
+                    </Toolbar>
+                </AppBar>
+            </Slide>
         );
     }else{
         return null;

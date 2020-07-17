@@ -6,16 +6,19 @@ const Loading = props => {
         return(
             <div className="abs">
                 <Typography variant="h3" component="h4" className="text-center">
-                    Chargement...
+                    {props.txt}...
                 </Typography>             
             </div>
         )
     }else{
         return(
-            <div>Chargement...</div>
+            <div>{props.txt}...</div>
         )       
     }
 
 }
 
+Loading.defaultProps = {
+    txt: "Chargement"
+}
 export default Loading;
