@@ -87,7 +87,9 @@ html{
   padding: 2em !important;
 }
 .mt-single{
-  margin-top: 6em !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .pt-single{
   padding: 2em !important;

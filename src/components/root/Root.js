@@ -44,7 +44,6 @@ const Root = ({scrollPosition}) => {
         }
         if(thumbs && thumbs.length < 1){
             setThumbs(<Loading big={true} txt="Aucun résultat"/>)
-
         }
     }, [thumbs]);
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°   

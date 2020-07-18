@@ -9,7 +9,8 @@ import { store, persistor } from './redux/general/store';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { PersistGate } from 'redux-persist/integration/react'
 import Loading from './components/loading/Loading';
-import ScroolTop from './components/scrool-top/ScroolTop';
+import FloatBtn from './components/float-btn/FloatBtn';
+import FloatBtnHome from './components/float-btn/FloatBtnHome';
 import './App.css';
 
 function App() {
@@ -24,16 +25,18 @@ function App() {
       <ThemeProvider theme={theme}>
           <BrowserRouter>
             <div className="app">
-              <Header/> 
                 <Switch>
                   <Route exact path="/">
                     <Login isChecked={isChecked}/>
                   </Route>
                   <Route exact path="/movies">
+                    <Header/> 
                     <NewRoot isChecked={isChecked}/>
+                    <FloatBtn/>
                   </Route>
                   <Route exact path="/movies/detail/:id">
                     <NewSingleMovie isChecked={isChecked}/>
+                    <FloatBtnHome/>
                   </Route> 
                   <Route path="/please">
                     <Please isChecked={isChecked}/>
@@ -42,7 +45,6 @@ function App() {
                     <Redirect to="/"/>
                   </Route>
                 </Switch>  
-              <ScroolTop/>
             </div>
           </BrowserRouter>
       </ThemeProvider> 
@@ -87,6 +89,12 @@ const theme = createMuiTheme({
       root: {
         color: "#616161",
       },
+    },
+    MuiToolbar: {
+      gutters: {
+        paddingLeft: '0px',
+        paddingRight: '0px'
+      }
     }
   }
 });

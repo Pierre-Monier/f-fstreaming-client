@@ -1,9 +1,9 @@
 import React from 'react';
 import { Fab, useScrollTrigger, Zoom } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import './ScroolTop.css';
+import './FloatBtn.css';
 
-const ScroolTop = () => {
+const FloatBtn = () => {
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 100,
@@ -26,4 +26,4 @@ const ScroolTop = () => {
     )
 }
 
-export default ScroolTop;
+export default FloatBtn;
