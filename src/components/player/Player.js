@@ -3,12 +3,6 @@ import ReactPlayer from 'react-player';
 
 const Player = ({subtitles, src}) => {
 
-    // useEffect(() => {
-        
-    //     return () => {
-    //         console.log('cleanup')
-    //     };
-    // }, [input]);
     return (
     <div className='video'>
         <ReactPlayer
