@@ -73,4 +73,5 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '100%',
         paddingLeft: '.6em'
     }
-  }));
+    
+}));
