@@ -21,4 +21,5 @@ const Loading = props => {
 Loading.defaultProps = {
     txt: "Chargement"
 }
+
 export default Loading;
