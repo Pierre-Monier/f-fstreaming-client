@@ -6,7 +6,7 @@ const Player = ({subtitles, src}) => {
     return (
     <div className='video'>
         <ReactPlayer
-            url={[{src: src, type: src.includes('.mp4') ? 'video/mp4' : 'video/ogg'}]}
+            url={[{src: src, type: src.includes('.mp4') ? 'video/mp4' : 'video/webm'}]}
             className='react-player'
             controls
             width='100%'
