@@ -102,6 +102,19 @@ const Thumb = props => {
                                         {props.data.duree}
                                     </Typography>
                                 </Grid>
+                                <Grid item xs={6} className="flex-start">
+                                    <Typography variant="overline" color="textSecondary" component="p">
+                                        ANNÉE
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={6} className="flex-end">
+                                    <></>
+                                </Grid>
+                                <Grid item xs={6} className="flex-start">
+                                    <Typography variant="h6" component="p">
+                                        {props.data.year}
+                                    </Typography>
+                                </Grid>
                                 <Grid item xs={12} className="flex-center" onClick={() => {setRead(!read)}}>
                                     <Typography variant="overline" color="textSecondary" component="p">
                                         {read ? HIDE : 'Lire le résumé'}
