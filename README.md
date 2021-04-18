@@ -1,3 +1,7 @@
+<img src="https://img.shields.io/badge/current--state-archived%F0%9F%97%84%EF%B8%8F-blue" alt="archived"/>
+
+*This project was the client app for a streaming application*
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
